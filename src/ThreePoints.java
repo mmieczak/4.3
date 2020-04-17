@@ -1,50 +1,23 @@
 public class ThreePoints {
 
-    private Point a;
-    private Point b;
-    private Point c;
-
-    ThreePoints() {
+    public double sectionLength(Section a) {
+        return Math.sqrt(Math.pow(a.getB().getX() - a.getA().getX(), 2) + Math.pow(a.getB().getY() - a.getA().getY(), 2));
     }
 
-    ThreePoints(Point a, Point b, Point c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+    double distanceOfSegment(Section segment) {
+        return segment.sectionLength();
     }
 
-    public double sectionLength(Point x, Point y) {
-        return Math.sqrt(Math.pow(y.getX() - x.getX(), 2) + Math.pow(y.getY() - x.getY(), 2));
+    public boolean canBuildTriangle(Point p1, Point p2, Point p3) {
+
+        double distA = sectionLength(new Section(p1, p2));
+        double distB = sectionLength(new Section(p1, p3));
+        double distC = sectionLength(new Section(p2, p3));
+
+        return ((distA < (distB + distC)) && (distB < (distC + distA)) && (distC < (distA + distB)));
     }
 
-    public boolean canBuildTriangle()
-    {
-  return true;
-    }
 
-    public Point getA() {
-        return a;
-    }
-
-    public void setA(Point a) {
-        this.a = a;
-    }
-
-    public Point getB() {
-        return b;
-    }
-
-    public void setB(Point b) {
-        this.b = b;
-    }
-
-    public Point getC() {
-        return c;
-    }
-
-    public void setC(Point c) {
-        this.c = c;
-    }
 }
 
 
